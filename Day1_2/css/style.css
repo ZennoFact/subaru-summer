@@ -1,0 +1,24 @@
+/* 全パーツに設定 */
+* {
+    margin: 0; /* 外側の余白 */
+    padding: 0; /* 内側 */
+}
+
+/* headerタグ中のimgタグ（要するに画像）すべてに影響します */
+header img {
+    width: 100%; /* 横幅をページ全体の100%に */
+    height: 200px; /* 高さを200pxに */
+    object-fit: cover; /* 画像の中央部分のみ表示 */
+}
+
+/* class="oshi-data"を設定したdivタグにのみに影響 */
+div.oshi-data {
+    display: flex; /* 中に書かれたものを横並びにします。（必要に応じて） */
+}
+
+/* class="oshi-data"を設定したdivタグに入っているimgタグのみに影響 */
+div.oshi-data img {
+    width: 200px; /* 横幅200px */
+    height: 100px; /* 高さ100px（設定すると画像の縦横比が崩れます） */
+}
+
