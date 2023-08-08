@@ -1,5 +1,7 @@
 # すばる夏期講習
 2023年度は8/7,8/8で実施。
+授業結果のサンプルを公開しました。[ここ](https://users2.kyoto-kcg.ac.jp/~tc10162/subaru-summer/)から確認できます。このサンプルは，この授業用リポジトリの直下にあるファイルです。
+
 ## 使用するツール
 - エディタ：[Visual Studio Code](https://code.visualstudio.com/) の Stable Build を使用
   - インストール時に以下の設定をしておくと便利です
