@@ -1,0 +1,57 @@
+<!-- Webのフロント側の人はインデントを半角スペース２で作っていることが多い印象です。（おそらくネストが深くなりすぎるから） -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Y | パクリじゃない、オマージュです</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>ホーム</h1>
+      <select name="" id="user-id">
+        <option value="user01">user01</option>
+        <option value="user02">user02</option>
+      </select>
+      <div class="post-area">
+        <div class="user-icon">
+          <img id="current-user-icon" src="./images/user01.png" alt="">
+        </div>
+        <div class="content">
+          <div class="text">
+            <textarea name="" id="text-area" cols="30" rows="10"></textarea>
+          </div>
+          <div class="buttons">
+            <button id="btn" class="button-item">投稿する</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="timeline"></div>
+  </div>
+  <template id="post">
+    <div class="post-area">
+      <div class="user-icon">
+        <img src="./images/10shiyuki.png" alt="">
+      </div>
+      <div class="content">
+        <div class="user-data">
+          <p>
+            <span class="name">表示名</span>
+            <span class="id">@ユーザーID</span>
+          </p>
+        </div>
+        <div class="message">
+          <p>投稿</p>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script src="./y.js"></script>
+</body>
+
+</html>

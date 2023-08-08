@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* y.html に使用しないCSSは除外 */
+
+/* 画面の横幅を100%で明確に指定 */
+html, body {
+    width: 100%;
+}
+
+/* ユーザーアイコンの設定。border-radiusで半径のサイズを指定すると丸くなる */
+div.user-icon img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+/* 配置したものを横並びにしたいので display: flex を設定 */
+div.post-area {
+    display: flex;
+}
+
+/* 画面中央の一部の領域に表示したいため，横幅を指定して 横のマージンをautoに設定 */
+div.container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+/* 投稿を書くパーツの入る領域を横にいい感じに拡大するときに，flex-grow: 1 に指定 */
+div.content {
+    flex-grow: 1;
+}
+
+/* テキストエリアの横幅を，入っている領域の横幅いっぱいに指定 */
+div.content textarea{
+    width: 100%;
+}
+
+/* ボタンを配置する場所を横並びにできるように設定 */
+div.buttons {
+    display: flex;
+}
+
+/* 今は一個しかないけれど，最後の1つの要素のみ右側に流れるように設定。 :last-child で最後の要素を指定可能 */
+.button-item:last-child {
+    margin-left: auto;
+}

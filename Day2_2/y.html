@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y | パクリじゃない、オマージュです</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- ページの真ん中に情報を出したいため，全体をdiv.containerで包む -->
+    <div class="container">
+        <!-- 投稿を入力する部品をheader.headerとして包む -->
+        <header class="header">
+            <h1>ホーム</h1>
+            <!-- 授業でサンプルを見せたユーザーアカウントを表示選択式にする方法でもっとも簡単なのはselectタグを使うこと -->
+            <select name="" id="user-id">
+                <!-- selectタグの選択肢はoptionタグで表現 -->
+                <option value="user01">user01</option>
+                <option value="user02">user02</option>
+            </select>
+            <!-- 投稿を入力するエリアを作成。なおクラス post-area は投稿を表示する画面でも使用するため。共通のスタイル(cssに書くデザイン要素)を盛り込む -->
+            <div class="post-area">
+                <!-- ユーザーアイコンのパーツだけ領域を分ける -->
+                <div class="user-icon">
+                    <img id="current-user-icon" src="./images/user01.png" alt="">
+                </div>
+                <!-- 投稿するパーツを配置 -->
+                <div class="content">
+                    <!-- TextAreaを配置 -->
+                    <div class="text">
+                        <textarea name="" id="text-area" cols="30" rows="10"></textarea>
+                    </div>
+                    <!-- Buttonを配置。将来的には画像を読み込むボタンなんかも置きたいスペース -->
+                    <div class="buttons">
+                        <button id="btn" class="button-item">投稿する</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- この div.timeline に投稿データを表示していくようにする -->
+        <div class="timeline"></div>
+    </div>
+    <!-- 繰り返し利用する投稿表示用のパーツのテンプレートを作成。idはpost（投稿するという意味）に設定。一旦デザインをしてからtemplateタグで囲うと便利。なお，templateタグに入ったままだとWebページには表示されない -->
+    <template id="post">
+        <!-- 実際に使いたい中身。投稿入力画面と全体のデザインを同じにしたいのでクラス名にpost-areaを指定。中身のタグにはidを使わないように注意。（プログラム頑張ればidも使用可能） -->
+        <div class="post-area">
+            <div class="user-icon">
+                <img src="./images/10shiyuki.png" alt="">
+            </div>
+            <div class="content">
+                <!-- 表示名とユーザーIDを配置するパーツ -->
+                <div class="user-data">
+                    <p>
+                        <!-- spanクラスは一定の文字の範囲を囲うときに使う。 -->
+                        <span class="name">表示名</span>
+                        <span class="id">@ユーザーID</span>
+                    </p>
+                </div>
+                <!-- 投稿されたメッセージを表示するパーツ。今回は改行を気にせずpタグで実装 -->
+                <div class="message">
+                    <p>投稿</p>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- まだJSは読み込んでない -->
+    <!-- <script src="./y.js"></script> -->
+</body>
+</html>
