@@ -10,12 +10,20 @@ html, body {
 
 /* 背景色を白に，高さの最小値は画面の高さ100%とし，最大値はコンテンツの100%分（要するにスクロールする分も含める）に設定 */
 div.container {
+    box-sizing: border-box;
     width: 500px;
     margin: 0 auto;
     background-color: #ffffff;
     padding: 5px 20px;
     min-height: 100vh;
     height: 100%;
+}
+
+/* スマホ用にメディアクエリを使って画面サイズを変更 */
+@media screen and (max-width: 499px) {
+    div.container {
+        width: 100%;
+    }
 }
 
 /* 下にのみ枠線を引く，上下にだけ内部に余白を持たせる */
