@@ -14,6 +14,9 @@ const userList = {
     }
 }
 
+// 現在のユーザーを変数で管理
+let currentUserId = "user01";
+
 // userListのデータに応じてユーザー選択欄が自動で調整されるように変更
 const userIdList = document.querySelector("#user-id");
 
@@ -21,17 +24,65 @@ const userIdList = document.querySelector("#user-id");
 Object.keys(userList).forEach(key => {
     // 取り出したkeyの情報をもとにユーザー情報にアクセスする。
     const userId = userList[key].id;
-    // optionのNodeをつくり，取得した情報を設定してuserIdListに追加
-    const option = document.createElement("option");
-    option.value = userId;
-    option.innerHTML = userId;
-    userIdList.appendChild(option);
+    createAccountParts(userId);
 });
 
-document.querySelector("#user-id").addEventListener("change", event => {
-    var userId = event.target.value;
-    document.querySelector("#current-user-icon").src = getUserIconPath(userId);
-}, false);
+// アカウント切り替え用の独自パーツを作成することに
+// 編集中かどうかを変数で管理
+let nowSelected = false;
+function createAccountParts(userId) {
+    const template = document.querySelector("#account-parts");
+    const clone = template.content.cloneNode(true);
+
+    const user = userList[userId];
+    clone.querySelector("img").src = getUserIconPath(user.id);
+    clone.querySelector("p.name").innerHTML = user.name.split("@")[0];
+    clone.querySelector("p.id").innerHTML = user.id;
+
+    const parts = clone.querySelector(".widget.account");
+    parts.addEventListener("click", event => {
+        if(parts.classList.contains("active")) {
+            if(nowSelected) cloesAccounts();
+            else openAccounts();
+            return;
+        }
+
+        document.querySelectorAll(".widget.account").forEach(element => {
+            element.classList.remove("active");
+        })
+        parts.classList.add("active");
+        currentUserId = parts.querySelector("p.id").innerHTML;
+        cloesAccounts();
+    }, false);
+
+    // TODO: ここ，最終的にローカルストレージの内容に応じてどれをアクティブにするかを変更
+    if (userId === currentUserId) {
+        parts.classList.add("active");
+    }
+
+    document.querySelector('#account-area').append(clone);
+}
+
+function openAccounts() {
+    nowSelected = true;
+    const parts = document.querySelectorAll(".widget.account");
+    for(let i = 0; i < parts.length; i++) {
+        parts[i].style.top = (72 * i) + "px";
+    }
+}
+
+function cloesAccounts() {
+    nowSelected = false;
+    document.querySelectorAll(".widget.account").forEach(element => {
+        element.style.top = 0;
+    })
+}
+
+// // アカウントを開いていて，それ以外をクリックしたとき
+document.addEventListener("click", event => {
+    if(!event.target.closest(".widget.account"))cloesAccounts();
+});
+
 
 function getUserIconPath(userId) {
     return "./images/" + userId +".png";
@@ -54,7 +105,7 @@ function showMessage() {
     
     var template = document.querySelector("#post");
     var clone = template.content.cloneNode(true);
-    var userId = document.querySelector("#user-id").value;
+    var userId = currentUserId
 
     clone.querySelector(".name").innerHTML = userList[userId].name;
     clone.querySelector(".id").innerHTML = "@" + userList[userId].id;
@@ -71,3 +122,12 @@ function showMessage() {
     textArea.focus();
     return true;
 }
+
+// 拡散用のQRコードを表示する処理
+document.querySelector("#share-button").addEventListener('click', event => {
+    document.querySelector("#modal-qr").classList.remove("hidden");
+}, false);
+
+document.querySelector("#modal-qr").addEventListener('click', event => {
+    event.target.classList.add("hidden");
+}, false);

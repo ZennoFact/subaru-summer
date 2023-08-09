@@ -19,6 +19,21 @@ div.container {
     height: 100%;
 }
 
+div.page-title {
+    display: flex;
+    margin-bottom: 20px;
+}
+div.page-title div#icon-area {
+    flex-grow: 1;
+    
+}
+div.page-title div#icon-area img {
+    margin-top: 10px;
+    margin-right: 5px;
+    right: 5px;
+    width: 48px;
+    height: 48px;
+}
 /* スマホ用にメディアクエリを使って画面サイズを変更 */
 @media screen and (max-width: 499px) {
     div.container {
@@ -50,6 +65,7 @@ div.content {
 
 div.content textarea{
     width: 100%;
+    font-size: 16px;
 }
 
 div.buttons {
@@ -58,11 +74,21 @@ div.buttons {
 
 /* 重なるとマウスポインターを指の形に */
 div.buttons button {
+    color: #ffffff;
+    font-weight: bold;
     cursor: pointer;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, rgb(118, 97, 173), rgb(44, 31, 133));
 }
 
 .button-item:last-child {
     margin-left: auto;
+}
+
+div.user-data {
+    margin-bottom: 10px;
 }
 
 /* ユーザーデータの文字サイズ変更の上，太字に */
@@ -80,9 +106,113 @@ div.text textarea {
 /* 文字色を変更 */
 div.user-data p span.id {
     color: #646464;
+    font-size: 14px;
 }
 
 /* 投稿の文字サイズもほんの少し大きく */
 div.message p {
     font-size: 16px;
+}
+
+
+/* ウィジェットの追加 */
+#account-area {
+    position: relative;
+    width: 170px;
+    user-select: none;
+}
+
+.widget.account {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: right;
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    color: #ffffff;
+    /* 背景をグラデーションさせる */
+    background: linear-gradient(90deg, rgb(160, 160, 160), rgb(48, 48, 48));
+    cursor: pointer;
+    color: #eee;
+}
+
+.widget.account.active {
+    /* 背景をグラデーションさせる */
+    /* background: linear-gradient(90deg, rgb(88, 53, 179), rgb(56, 43, 135)); */
+    background: linear-gradient(90deg, rgb(255, 255, 255), rgb(216, 216, 216));
+    color: #464646;
+    /* 重ねたときに上に来るように制御 */
+    z-index: 1;
+}
+
+.widget.account div.user-icon {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+}
+
+.widget.account div.user-icon img {
+    /* 半径を変更 */
+    width: 48px;
+    height: 48px;
+    /* アイコンに（うっすら）影を落とす */
+    filter: drop-shadow(0px 3px 3px #aaa);
+}
+
+
+.widget.account p.name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.widget.account p.id {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* シェア用のQRコード関連 */
+.widget.qr {
+    position: fixed;
+    right: 10px;
+    bottom: 5px;
+    text-align: right;
+    width: 64px;
+    height: 64px;
+    padding: 10px;
+    color: #ffffff;  
+}
+
+.widget.qr button {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+#modal-qr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100% !important;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+
+#modal-qr.hidden {
+    display: none;
+}
+  
+#modal-qr img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
 }
